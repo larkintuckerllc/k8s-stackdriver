@@ -243,6 +243,7 @@ func (t *Translator) GetMetricKind(metricName string, metricSelector labels.Sele
 			return "", NewLabelNotAllowedError(fmt.Sprintf("Project selector must use '=' or '==': You used %s", req.Operator()))
 		}
 	}
+	klog.Infof("# %s ################################", metricProj) // TODO: REMOVE
 	response, err := t.service.Projects.MetricDescriptors.Get(fmt.Sprintf("projects/%s/metricDescriptors/%s", metricProj, metricName)).Do()
 	if err != nil {
 		return "", NewNoSuchMetricError(metricName, err)
