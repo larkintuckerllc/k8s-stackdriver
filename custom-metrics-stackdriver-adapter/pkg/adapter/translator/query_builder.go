@@ -228,6 +228,7 @@ func (t *Translator) ListMetricDescriptors(fallbackForContainerMetrics bool) *st
 
 // GetMetricKind returns metricKind for metric metricName, obtained from Stackdriver Monitoring API.
 func (t *Translator) GetMetricKind(metricName string, metricSelector labels.Selector) (string, error) {
+	klog.Infof("# GetMetricKind ################################") // TODO: REMOVE
 	metricProj := t.config.Project
 	requirements, selectable := metricSelector.Requirements()
 	if !selectable {
